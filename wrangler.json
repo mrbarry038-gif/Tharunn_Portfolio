@@ -1,0 +1,7 @@
+{
+    "name": "tharunn-portfolio",
+    "compatibility_date": "2024-02-05",
+    "assets": {
+        "directory": "./dist"
+    }
+}
