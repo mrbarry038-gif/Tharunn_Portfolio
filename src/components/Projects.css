@@ -1,0 +1,107 @@
+.projects-section {
+    padding: 10vh 0;
+    background-color: var(--bg-color);
+}
+
+.section-header {
+    margin-bottom: 8vh;
+}
+
+.kinetic-header.small {
+    font-size: clamp(3rem, 8vw, 6rem);
+}
+
+.project-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.project-row {
+    display: grid;
+    grid-template-columns: 0.5fr 2fr 2fr 0.5fr;
+    align-items: flex-start;
+    padding: 4rem 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid transparent;
+    /* Fix: Give it width */
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.project-row:last-child {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.project-row:hover {
+    border-bottom-color: var(--text-main);
+    /* Handle hover in CSS for reliability */
+}
+
+.project-row:hover .project-info h3 {
+    transform: translateX(20px);
+    color: var(--accent-primary);
+}
+
+.project-index {
+    font-family: var(--font-mono);
+    color: var(--text-secondary);
+}
+
+.project-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.project-info h3 {
+    font-size: 3rem;
+    line-height: 1;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.project-cat {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    opacity: 0.6;
+}
+
+.project-desc p {
+    font-size: 1.1rem;
+    color: #888;
+    max-width: 80%;
+}
+
+.project-action {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.circle-btn {
+    width: 50px;
+    height: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.project-row:hover .circle-btn {
+    background: var(--text-main);
+    color: var(--bg-color);
+    transform: rotate(-45deg);
+}
+
+@media (max-width: 1024px) {
+    .project-row {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .project-desc {
+        display: none;
+        /* Hide description on mobile for cleaner look */
+    }
+}

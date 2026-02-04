@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
+
+:root {
+  --bg-color: #000000;
+  /* Pure Black */
+  --text-main: #ffffff;
+  /* Stark White */
+  --text-secondary: #00ff41;
+  /* Cyber Green / Electric */
+  --accent-primary: #0033ff;
+  /* Deep Electric Blue */
+  --accent-highlight: #ff3333;
+  /* Alert Red for small interactions */
+
+  --font-main: 'Space Grotesk', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  --spacing-container: 4vw;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+::selection {
+  background: var(--text-secondary);
+  color: var(--bg-color);
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  font-family: var(--font-main);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  cursor: crosshair;
+  /* Technical/Precision feel */
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-main);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.04em;
+  /* Tight Swiss style */
+  line-height: 0.9;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Typography Utilities */
+.kinetic-header {
+  font-size: clamp(4rem, 15vw, 12rem);
+  white-space: nowrap;
+  font-weight: 700;
+  margin-left: -0.05em;
+}
+
+.mono-tag {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  opacity: 0.7;
+}
+
+.container {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-container);
+  width: 100%;
+}
