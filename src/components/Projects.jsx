@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaArrowRight, FaGithub, FaExternalLinkAlt, FaTimes } from 'react-icons/fa';
+import { FaArrowRight, FaGithub, FaExternalLinkAlt, FaTimes, FaExpand } from 'react-icons/fa';
 import './Projects.css';
 
 const projects = [
@@ -21,7 +21,7 @@ const projects = [
         category: "Web Design / Automation",
         description: "Product showcase with custom engraving algorithms and Discord integration.",
         details: "A bespoke website for a granite manufacturing firm. Includes an automated quote system that references current stock prices and sends lead details directly to a Discord channel for the sales team.",
-        image: "/assets/project2.jpg",
+        image: "/assets/jai-granites.png",
         liveLink: "#",
         githubLink: "#",
         status: "Ongoing"
@@ -30,9 +30,9 @@ const projects = [
         id: "03",
         title: "Mobile Shop UI",
         category: "Interface Design",
-        description: "Conceptual kinetic interface for mobile commerce applications.",
+        description: "Conceptual interface for mobile commerce applications.",
         details: "An experimental UI design focused on kinetic interactions and gesture-based navigation. Using Framer Motion, this project explores how animation can enhance user retention in e-commerce apps.",
-        image: "/assets/project3.jpg",
+        image: "/assets/f-mob.png",
         liveLink: "#",
         githubLink: "#",
         status: "Completed"
@@ -42,6 +42,7 @@ const projects = [
 const Projects = () => {
     const [filter, setFilter] = useState('All');
     const [selectedProject, setSelectedProject] = useState(null);
+    const [isFullScreen, setIsFullScreen] = useState(false);
 
     const filteredProjects = filter === 'All'
         ? projects
@@ -118,8 +119,11 @@ const Projects = () => {
 
                             <div className="modal-grid">
                                 <div className="modal-left">
-                                    <div className="modal-img-wrapper">
+                                    <div className="modal-img-wrapper" onClick={() => setIsFullScreen(true)}>
                                         <img src={selectedProject.image} alt={selectedProject.title} />
+                                        <div className="img-overlay-icon">
+                                            <FaExpand />
+                                        </div>
                                     </div>
                                 </div>
                                 <div className="modal-right">
@@ -140,6 +144,31 @@ const Projects = () => {
                             </div>
                         </motion.div>
                     </div>
+                )}
+            </AnimatePresence>
+
+            <AnimatePresence>
+                {isFullScreen && selectedProject && (
+                    <motion.div
+                        className="fullscreen-overlay"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        onClick={() => setIsFullScreen(false)}
+                    >
+                        <button className="fullscreen-close" onClick={() => setIsFullScreen(false)}>
+                            <FaTimes />
+                        </button>
+                        <motion.img
+                            src={selectedProject.image}
+                            alt={selectedProject.title}
+                            className="fullscreen-image"
+                            initial={{ scale: 0.8 }}
+                            animate={{ scale: 1 }}
+                            exit={{ scale: 0.8 }}
+                            onClick={(e) => e.stopPropagation()}
+                        />
+                    </motion.div>
                 )}
             </AnimatePresence>
         </section>
