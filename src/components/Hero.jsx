@@ -12,6 +12,7 @@ const Hero = () => {
                 </div>
 
                 <div className="kinetic-wrapper">
+                    <div className="hero-text-bg"></div>
                     <motion.div
                         initial={{ x: '-10%' }}
                         animate={{ x: '-5%' }}
