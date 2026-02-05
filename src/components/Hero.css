@@ -42,6 +42,9 @@
     width: 60vw;
     height: 40vw;
     background: radial-gradient(circle at center, rgba(30, 30, 30, 0.8) 0%, rgba(10, 10, 10, 0) 70%);
+    /* background-image: url("/assets/hero-bg.jpg"); User can uncomment this if file exists */
+    background-size: cover;
+    background-position: center;
     z-index: -1;
     pointer-events: none;
     border-radius: 50%;

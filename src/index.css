@@ -1,20 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
-
 :root {
-  --bg-color: #000000;
-  /* Pure Black */
+  --bg-color: #050505;
+  /* Deep Black */
   --text-main: #ffffff;
   /* Stark White */
   --text-secondary: #00ff41;
   /* Cyber Green / Electric */
   --accent-primary: #0033ff;
   /* Deep Electric Blue */
-  --accent-highlight: #ff3333;
-  /* Alert Red for small interactions */
 
-  --font-main: 'Space Grotesk', sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
+  --font-main: 'Outfit', sans-serif;
+  --font-mono: 'Space Grotesk', monospace;
 
   --spacing-container: 4vw;
 }
@@ -36,8 +31,24 @@ body {
   font-family: var(--font-main);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
-  cursor: crosshair;
-  /* Technical/Precision feel */
+
+  /* Developer Aesthetic - Grid Background */
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+  background-attachment: fixed;
+  cursor: none;
+  /* Hide default cursor */
+}
+
+a,
+button,
+input,
+textarea,
+.project-row {
+  cursor: none;
+  /* Ensure interactive elements also don't show cursor */
 }
 
 h1,
@@ -49,9 +60,9 @@ h6 {
   font-family: var(--font-main);
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: -0.04em;
-  /* Tight Swiss style */
-  line-height: 0.9;
+  letter-spacing: -0.02em;
+  /* Adjusted for Outfit */
+  line-height: 1.1;
 }
 
 a {
@@ -62,10 +73,13 @@ a {
 
 /* Typography Utilities */
 .kinetic-header {
+  font-family: var(--font-main);
   font-size: clamp(4rem, 15vw, 12rem);
   white-space: nowrap;
-  font-weight: 700;
+  font-weight: 800;
+  /* Bolder for Outfit */
   margin-left: -0.05em;
+  line-height: 0.9;
 }
 
 .mono-tag {
@@ -81,4 +95,22 @@ a {
   margin: 0 auto;
   padding: 0 var(--spacing-container);
   width: 100%;
+}
+
+/* Custom Transparent Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(255, 255, 255, 0.3);
 }

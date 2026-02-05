@@ -1,13 +1,16 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { FaTwitter, FaLinkedin, FaInstagram, FaDiscord } from 'react-icons/fa';
 import './Contact.css';
 
 const Contact = () => {
     return (
         <section id="contact" className="contact-section">
             <div className="container">
-                <h2 className="kinetic-header outline">LET'S</h2>
-                <h2 className="kinetic-header solid">TALK</h2>
+                <div className="section-header">
+                    <h2 className="section-title">Let's Connect</h2>
+                    <p className="section-subtitle">Have a project in mind? Let's build something extraordinary.</p>
+                </div>
 
                 <div className="contact-layout">
                     <form className="kinetic-form">
@@ -37,16 +40,17 @@ const Contact = () => {
                         <div className="detail-block">
                             <span className="mono-tag">SOCIALS</span>
                             <div className="social-row">
-                                <a href="#">LN</a>
-                                <a href="#">GH</a>
-                                <a href="#">TW</a>
+                                <a href="#" aria-label="Twitter"><FaTwitter /></a>
+                                <a href="#" aria-label="LinkedIn"><FaLinkedin /></a>
+                                <a href="#" aria-label="Instagram"><FaInstagram /></a>
+                                <a href="#" aria-label="Discord"><FaDiscord /></a>
                             </div>
                         </div>
-                        <div className="detail-block">
-                            <span className="mono-tag">COPYRIGHT</span>
-                            <span className="copyright-text">© {new Date().getFullYear()} THARUNN NAGARAJAN</span>
-                        </div>
                     </div>
+                </div>
+
+                <div className="footer-bottom">
+                    <span className="copyright-text">© {new Date().getFullYear()} THARUNN NAGARAJAN. ALL RIGHTS RESERVED.</span>
                 </div>
             </div>
         </section>

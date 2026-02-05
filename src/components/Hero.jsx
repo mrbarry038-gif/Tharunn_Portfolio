@@ -16,7 +16,7 @@ const Hero = () => {
                     <motion.div
                         initial={{ x: '-10%' }}
                         animate={{ x: '-5%' }}
-                        transition={{ duration: 10, repeat: Infinity, repeatType: "reverse", ease: "linear" }}
+                        transition={{ duration: 10, repeat: Infinity, repeatType: "reverse", ease: [0.16, 1, 0.3, 1] }}
                         className="row"
                     >
                         <h1 className="kinetic-header outline">THARUNN</h1>

@@ -5,10 +5,12 @@ import About from './components/About';
 import Skills from './components/Skills';
 import Projects from './components/Projects';
 import Contact from './components/Contact';
+import Cursor from './components/Cursor';
 
 function App() {
     return (
         <div className="app">
+            <Cursor />
             <Header />
             <main>
                 <Hero />

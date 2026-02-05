@@ -25,18 +25,58 @@
     color: var(--accent-primary);
 }
 
+.about-content {
+    display: flex;
+    justify-content: space-between;
+    gap: 4rem;
+    align-items: flex-start;
+}
+
 .bio-details {
+    flex: 1;
     max-width: 600px;
-    margin-left: auto;
 }
 
 .bio-details p {
-    font-family: var(--font-mono);
-    font-size: 1rem;
+    font-size: 1.35rem;
+    /* Increased size */
     line-height: 1.6;
-    color: var(--text-main);
-    opacity: 0.8;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 300;
+}
+
+.profile-block {
+    flex: 1;
+    /* Adjust flex as needed */
+    max-width: 300px;
+    display: flex;
+    justify-content: center;
+}
+
+.profile-frame {
+    width: 250px;
+    height: 300px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    /* Slight roundness */
+    position: relative;
+    overflow: hidden;
+}
+
+.profile-frame::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.about-content-wrapper {
+    /* Legacy fallback clean up - not used */
 }
 
 .btn-text-only {
@@ -47,25 +87,35 @@
     align-items: center;
     gap: 1rem;
     position: relative;
+    padding-bottom: 2px;
+    color: var(--text-main);
+    text-decoration: none;
 }
 
 .btn-text-only::after {
     content: '';
     position: absolute;
-    bottom: -5px;
+    bottom: 0;
     left: 0;
     width: 100%;
     height: 1px;
     background-color: var(--text-main);
     transition: transform 0.3s ease;
+    transform-origin: right;
 }
 
 .btn-text-only:hover::after {
     transform: scaleX(0);
+    transform-origin: left;
 }
 
 .icon-arrow {
     font-size: 0.8rem;
+    transition: transform 0.3s ease;
+}
+
+.btn-text-only:hover .icon-arrow {
+    transform: translateY(3px);
 }
 
 @media (max-width: 768px) {
@@ -73,4 +123,36 @@
         grid-template-columns: 1fr;
         gap: 2rem;
     }
+
+    .about-content {
+        flex-direction: column-reverse;
+        /* Put profile on top or bottom? User wants attention. Let's keep distinct. */
+        gap: 3rem;
+    }
+
+    .profile-block {
+        max-width: 100%;
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    .profile-frame {
+        width: 100%;
+        max-width: 300px;
+        height: 350px;
+        /* Taller on mobile maybe */
+    }
+}
+
+.profile-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: grayscale(100%) contrast(1.1);
+    transition: filter 0.5s ease;
+}
+
+.profile-frame:hover .profile-img {
+    filter: grayscale(0%) contrast(1);
 }

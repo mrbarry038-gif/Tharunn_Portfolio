@@ -15,7 +15,7 @@ const Header = () => {
     }, [isOpen]);
 
     return (
-        <header className="header">
+        <header className={`header ${isOpen ? 'menu-open' : ''}`}>
             <div className="header-container">
                 <a href="#" className="logo">TN.</a>
 
@@ -28,20 +28,20 @@ const Header = () => {
                 {isOpen && (
                     <motion.div
                         className="menu-overlay"
-                        initial={{ y: '-100%' }}
-                        animate={{ y: 0 }}
-                        exit={{ y: '-100%' }}
-                        transition={{ duration: 0.5, ease: [0.76, 0, 0.24, 1] }}
+                        initial={{ y: -50, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        exit={{ y: -50, opacity: 0 }}
+                        transition={{ duration: 0.4, ease: [0.33, 1, 0.68, 1] }}
                     >
                         <nav className="menu-nav">
                             {['Home', 'About', 'Work', 'Contact'].map((item, index) => (
                                 <motion.a
                                     key={item}
                                     href={`#${item.toLowerCase()}`}
-                                    className="menu-link kinetic-header"
-                                    initial={{ y: 50, opacity: 0 }}
+                                    className="menu-link"
+                                    initial={{ y: 20, opacity: 0 }}
                                     animate={{ y: 0, opacity: 1 }}
-                                    transition={{ delay: 0.3 + (index * 0.1) }}
+                                    transition={{ delay: 0.1 + (index * 0.05) }}
                                     onClick={() => setIsOpen(false)}
                                 >
                                     {item}

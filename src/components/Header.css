@@ -20,29 +20,37 @@
     /* Re-enable clicks on header content */
 }
 
+/* Logo & Toggle */
 .logo {
     font-family: var(--font-display);
     font-weight: 800;
     font-size: 1.5rem;
     color: #fff;
-    mix-blend-mode: difference;
-    /* Blend only the logo */
+    /* Default White on Black */
     position: relative;
     z-index: 1001;
+    transition: color 0.3s ease;
 }
 
 .menu-toggle {
     background: none;
     border: none;
     color: #fff;
+    /* Default White on Black */
     font-family: var(--font-mono);
     font-size: 0.9rem;
     cursor: pointer;
     text-transform: uppercase;
-    mix-blend-mode: difference;
-    /* Blend only the button */
     position: relative;
     z-index: 1001;
+    transition: color 0.3s ease;
+}
+
+/* Sidebar Context - When Menu is Open */
+.header.menu-open .logo,
+.header.menu-open .menu-toggle {
+    color: var(--bg-color);
+    /* Black text on Blue Menu */
 }
 
 .menu-overlay {
@@ -51,48 +59,38 @@
     left: 0;
     width: 100vw;
     height: 100dvh;
-    /* Use dynamic viewport height for mobile */
     background-color: var(--accent-primary);
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     justify-content: center;
     z-index: 1000;
-    /* High z-index to cover all content */
     overflow-y: auto;
-    /* Enable vertical scrolling */
     overscroll-behavior: contain;
-    /* Prevent scrolling parent page */
     pointer-events: auto;
-    /* Enable clicks on the overlay */
-}
-
-/* Ensure content is centerable but scrollable */
-.menu-nav {
-    margin: auto;
-    padding: 4rem 0;
-    /* Add padding for safe scroll areas */
-    min-height: min-content;
 }
 
 .menu-nav {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 1.5rem;
     text-align: center;
 }
 
 .menu-link {
     color: var(--bg-color);
     /* Black text on Blue bg */
-    font-size: 3rem;
-    /* Override kinetic header size for menu */
-    line-height: 1;
-    transition: transform 0.3s ease;
+    font-family: var(--font-main);
+    font-size: clamp(3rem, 6vw, 5rem);
+    /* Smaller, responsive size */
+    font-weight: 700;
+    line-height: 1.1;
+    text-transform: uppercase;
+    transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 .menu-link:hover {
-    transform: skewX(-10deg) translateX(20px);
-    color: #fff;
-    -webkit-text-stroke: 1px var(--bg-color);
+    transform: scale(1.05);
+    /* Simple scale, no weird stroke */
+    opacity: 0.8;
 }

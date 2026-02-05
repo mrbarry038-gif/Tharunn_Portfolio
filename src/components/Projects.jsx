@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { FaArrowRight } from 'react-icons/fa';
+import { motion, AnimatePresence } from 'framer-motion';
+import { FaArrowRight, FaGithub, FaExternalLinkAlt, FaTimes } from 'react-icons/fa';
 import './Projects.css';
 
 const projects = [
@@ -9,29 +9,39 @@ const projects = [
         title: "Wraffle Ecommerce",
         category: "Full Stack / React / Node",
         description: "A secure, dynamic ecommerce platform for modern retail.",
-        link: "#",
-        status: "Completed"
+        details: "Wraffle is a comprehensive ecommerce solution built with the MERN stack. It features real-time inventory tracking, secure payment gateways, and a dynamic dashboard for admins. The architecture ensures high scalability and performance.",
+        image: "/assets/project1.jpg",
+        liveLink: "#",
+        githubLink: "#",
+        status: "Ongoing"
     },
     {
         id: "02",
         title: "Jai Granites",
         category: "Web Design / Automation",
         description: "Product showcase with custom engraving algorithms and Discord integration.",
-        link: "#",
+        details: "A bespoke website for a granite manufacturing firm. Includes an automated quote system that references current stock prices and sends lead details directly to a Discord channel for the sales team.",
+        image: "/assets/project2.jpg",
+        liveLink: "#",
+        githubLink: "#",
         status: "Ongoing"
     },
     {
         id: "03",
-        title: "Mobile UI Kit",
+        title: "Mobile Shop UI",
         category: "Interface Design",
         description: "Conceptual kinetic interface for mobile commerce applications.",
-        link: "#",
+        details: "An experimental UI design focused on kinetic interactions and gesture-based navigation. Using Framer Motion, this project explores how animation can enhance user retention in e-commerce apps.",
+        image: "/assets/project3.jpg",
+        liveLink: "#",
+        githubLink: "#",
         status: "Completed"
     }
 ];
 
 const Projects = () => {
     const [filter, setFilter] = useState('All');
+    const [selectedProject, setSelectedProject] = useState(null);
 
     const filteredProjects = filter === 'All'
         ? projects
@@ -62,10 +72,10 @@ const Projects = () => {
                         <motion.div
                             key={index}
                             className="project-row"
-                            initial={{ opacity: 0, y: 20 }}
+                            initial={{ opacity: 0, y: 50 }}
                             whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.5, delay: index * 0.1 }}
+                            viewport={{ once: true, margin: "-50px" }}
+                            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: index * 0.1 }}
                         >
                             <div className="project-index">({project.id})</div>
                             <div className="project-info">
@@ -79,14 +89,59 @@ const Projects = () => {
                                 <p>{project.description}</p>
                             </div>
                             <div className="project-action">
-                                <a href={project.link} className="circle-btn">
+                                <button
+                                    className="circle-btn"
+                                    onClick={() => setSelectedProject(project)}
+                                    aria-label="View Project Details"
+                                >
                                     <FaArrowRight />
-                                </a>
+                                </button>
                             </div>
                         </motion.div>
                     ))}
                 </div>
             </div>
+
+            <AnimatePresence>
+                {selectedProject && (
+                    <div className="modal-overlay" onClick={() => setSelectedProject(null)}>
+                        <motion.div
+                            className="modal-content"
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            exit={{ opacity: 0, scale: 0.9 }}
+                            onClick={(e) => e.stopPropagation()} // Prevent close on content click
+                        >
+                            <button className="modal-close" onClick={() => setSelectedProject(null)}>
+                                <FaTimes />
+                            </button>
+
+                            <div className="modal-grid">
+                                <div className="modal-left">
+                                    <div className="modal-img-wrapper">
+                                        <img src={selectedProject.image} alt={selectedProject.title} />
+                                    </div>
+                                </div>
+                                <div className="modal-right">
+                                    <h3 className="modal-title">{selectedProject.title}</h3>
+                                    <span className="modal-cat">{selectedProject.category}</span>
+
+                                    <p className="modal-desc">{selectedProject.details || selectedProject.description}</p>
+
+                                    <div className="modal-links">
+                                        <a href={selectedProject.liveLink} target="_blank" rel="noreferrer" className="modal-link-btn">
+                                            LIVE DEMO <FaExternalLinkAlt />
+                                        </a>
+                                        <a href={selectedProject.githubLink} target="_blank" rel="noreferrer" className="modal-link-btn outline">
+                                            GITHUB <FaGithub />
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </motion.div>
+                    </div>
+                )}
+            </AnimatePresence>
         </section>
     );
 };
