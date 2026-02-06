@@ -40,7 +40,7 @@ const About = () => {
                             <div className="profile-block">
                                 <div className="profile-frame">
                                     <img
-                                        src="/assets/profile.jpg"
+                                        src="/assets/profile.jpeg"
                                         alt="Tharunn Nagarajan"
                                         className="profile-img"
                                     />
