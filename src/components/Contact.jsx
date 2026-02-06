@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaTwitter, FaLinkedin, FaInstagram, FaDiscord } from 'react-icons/fa';
+import { FaLinkedin, FaInstagram, FaDiscord } from 'react-icons/fa';
+import { FaXTwitter } from 'react-icons/fa6';
 import './Contact.css';
 
 const Contact = () => {
@@ -40,10 +41,22 @@ const Contact = () => {
                         <div className="detail-block">
                             <span className="mono-tag">SOCIALS</span>
                             <div className="social-row">
-                                <a href="#" aria-label="Twitter"><FaTwitter /></a>
-                                <a href="#" aria-label="LinkedIn"><FaLinkedin /></a>
-                                <a href="#" aria-label="Instagram"><FaInstagram /></a>
-                                <a href="#" aria-label="Discord"><FaDiscord /></a>
+                                <a href="#" aria-label="X" className="social-link">
+                                    <FaXTwitter />
+                                    <span className="tooltip">X (Twitter)</span>
+                                </a>
+                                <a href="#" aria-label="LinkedIn" className="social-link">
+                                    <FaLinkedin />
+                                    <span className="tooltip">LinkedIn</span>
+                                </a>
+                                <a href="#" aria-label="Instagram" className="social-link">
+                                    <FaInstagram />
+                                    <span className="tooltip">Instagram</span>
+                                </a>
+                                <a href="#" aria-label="Discord" className="social-link">
+                                    <FaDiscord />
+                                    <span className="tooltip">Discord</span>
+                                </a>
                             </div>
                         </div>
                     </div>

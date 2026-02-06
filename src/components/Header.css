@@ -86,11 +86,36 @@
     font-weight: 700;
     line-height: 1.1;
     text-transform: uppercase;
-    transition: transform 0.3s ease, opacity 0.3s ease;
+    transition: transform 0.3s ease, opacity 0.3s ease, color 0.3s ease;
+    position: relative;
+    /* For Dot positioning */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.menu-link.dimmed {
+    opacity: 0.3;
+    /* Dim non-hovered items */
+    filter: blur(1px);
+    /* Optional: Slight blur for depth */
 }
 
 .menu-link:hover {
     transform: scale(1.05);
-    /* Simple scale, no weird stroke */
-    opacity: 0.8;
+    opacity: 1;
+}
+
+.menu-dot {
+    width: 12px;
+    height: 12px;
+    background-color: var(--bg-color);
+    /* Or accent color e.g., yellow if needed */
+    border-radius: 50%;
+    position: absolute;
+    right: -25px;
+    /* Position to the right */
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
 }

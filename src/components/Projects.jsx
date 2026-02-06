@@ -36,7 +36,19 @@ const projects = [
         liveLink: "#",
         githubLink: "#",
         status: "Completed"
+    },
+    {
+        id: "04",
+        title: "FiveM - QB UI Designs",
+        category: "Interface Design",
+        description: "Advanced UI designs for QB-Framework.",
+        details: "A comprehensive collection of advanced UI components built using React and Vanilla JS, specifically designed for the FiveM QB-Framework.",
+        image: "/assets/f-mob.png",
+        liveLink: "#",
+        githubLink: "#",
+        status: "Ongoing"
     }
+
 ];
 
 const Projects = () => {
