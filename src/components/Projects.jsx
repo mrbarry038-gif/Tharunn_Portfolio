@@ -61,7 +61,7 @@ const Projects = () => {
         : projects.filter(project => project.status === filter);
 
     return (
-        <section id="projects" className="projects-section">
+        <section id="work" className="projects-section">
             <div className="container">
                 <div className="section-header">
                     <h2 className="kinetic-header outline small">SELECTED</h2>
