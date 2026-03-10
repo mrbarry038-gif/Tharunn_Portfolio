@@ -47,6 +47,17 @@ const projects = [
         liveLink: "#",
         githubLink: "#",
         status: "Ongoing"
+    },
+    {
+        id: "05",
+        title: "Agrisentrix",
+        category: "Web Design / Static",
+        description: "Business presentation portfolio with a NASA color-themed webpage.",
+        details: "A static business presentation portfolio website featuring a unique NASA color-themed design. Built to showcase corporate profiles and services with a dynamic visual approach.",
+        image: "/assets/hero-bg.jpg",
+        liveLink: "#",
+        githubLink: "#",
+        status: "Completed"
     }
 
 ];
