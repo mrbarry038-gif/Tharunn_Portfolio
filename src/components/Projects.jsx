@@ -4,7 +4,7 @@ import { FaArrowRight, FaGithub, FaExternalLinkAlt, FaTimes, FaExpand } from 're
 import './Projects.css';
 
 const projects = [
-    {
+    /* {
         id: "01",
         title: "Wraffle Ecommerce",
         category: "Full Stack / React / Node",
@@ -25,7 +25,7 @@ const projects = [
         liveLink: "#",
         githubLink: "#",
         status: "Ongoing"
-    },
+    }, */
     {
         id: "03",
         title: "Mobile Shop UI",
@@ -37,7 +37,7 @@ const projects = [
         githubLink: "#",
         status: "Completed"
     },
-    {
+    /* {
         id: "04",
         title: "FiveM - QB UI Designs",
         category: "Interface Design",
@@ -47,7 +47,7 @@ const projects = [
         liveLink: "#",
         githubLink: "#",
         status: "Ongoing"
-    },
+    }, */
     {
         id: "05",
         title: "Agrisentrix",

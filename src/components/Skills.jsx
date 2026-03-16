@@ -5,8 +5,8 @@ import './Skills.css';
 const stack = [
     { cat: "CORE", tech: "HTML5 / CSS3 / JAVASCRIPT (ES6+)" },
     { cat: "FRONTEND", tech: "REACT.JS / VITE" },
-    { cat: "BACKEND", tech: "NODE.JS / EXPRESS / JAVA" },
-    { cat: "DATABASE", tech: "MONGODB / SQL" },
+    { cat: "BACKEND", tech: "JAVA" },
+    { cat: "DATABASE", tech: "SQL" },
     { cat: "TOOLS", tech: "GIT / DISCORD API / WEBPACK" }
 ];
 
