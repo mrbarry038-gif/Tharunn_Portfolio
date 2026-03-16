@@ -39,7 +39,7 @@ const Hero = () => {
                     </div>
                     <div className="stack-block">
                         <span className="mono-tag label">Specialty</span>
-                        <span className="value">MERN / Java</span>
+                        <span className="value">React / Java</span>
                     </div>
                 </div>
             </div>

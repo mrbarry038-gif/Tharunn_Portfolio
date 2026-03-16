@@ -27,7 +27,7 @@ const About = () => {
                         <div className="about-content">
                             <div className="bio-details">
                                 <p>
-                                    My name is Tharunn Nagarajan. I am a Full Stack Developer specializing in the MERN stack.
+                                    My name is Tharunn Nagarajan. I am a Full Stack Developer specializing in the React.
                                     My work is defined by a refusal to settle for "static". Every pixel should serve a purpose,
                                     and every interaction should feel alive.
                                 </p>

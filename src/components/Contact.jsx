@@ -24,12 +24,12 @@ const Contact = () => {
         setStatus('sending');
 
         // REPLACE THIS WITH YOUR ACTUAL DISCORD WEBHOOK URL
-        const WEBHOOK_URL = "https://discord.com/api/webhooks/1469339426088812728/3EQHe5cRdpKieLvNmEo-_y47f7sVA8MjcCpovuVI3-IzAhD049Q9tNO1Rh8AESEhvh8S"; 
+        const WEBHOOK_URL = "https://discord.com/api/webhooks/1469339426088812728/3EQHe5cRdpKieLvNmEo-_y47f7sVA8MjcCpovuVI3-IzAhD049Q9tNO1Rh8AESEhvh8S";
 
         if (WEBHOOK_URL === "https://discord.com/api/webhooks/1469339426088812728/3EQHe5cRdpKieLvNmEo-_y47f7sVA8MjcCpovuVI3-IzAhD049Q9tNO1Rh8AESEhvh8Sz") {
-             alert("Please set your Discord Webhook URL in Contact.jsx");
-             setStatus('');
-             return;
+            alert("Please set your Discord Webhook URL in Contact.jsx");
+            setStatus('');
+            return;
         }
 
         const payload = {
@@ -81,33 +81,33 @@ const Contact = () => {
                     <form className="kinetic-form" onSubmit={handleSubmit}>
                         <div className="input-group">
                             <label>01 / NAME</label>
-                            <input 
-                                type="text" 
+                            <input
+                                type="text"
                                 name="name"
                                 value={formData.name}
                                 onChange={handleChange}
-                                placeholder="Enter your name" 
+                                placeholder="Enter your name"
                                 required
                             />
                         </div>
                         <div className="input-group">
                             <label>02 / EMAIL</label>
-                            <input 
-                                type="email" 
+                            <input
+                                type="email"
                                 name="email"
                                 value={formData.email}
                                 onChange={handleChange}
-                                placeholder="Enter your email" 
+                                placeholder="Enter your email"
                                 required
                             />
                         </div>
                         <div className="input-group">
                             <label>03 / MESSAGE</label>
-                            <textarea 
+                            <textarea
                                 name="message"
                                 value={formData.message}
                                 onChange={handleChange}
-                                placeholder="Tell me about your project" 
+                                placeholder="Tell me about your project"
                                 rows="1"
                                 required
                             ></textarea>
