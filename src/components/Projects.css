@@ -325,18 +325,23 @@
 @media (max-width: 600px) {
     .modal-overlay {
         padding: 1rem;
-        align-items: flex-end; /* Align to bottom for sheet-like feel or center? Center is safer for now, but let's stick to center as per existing */
+        align-items: flex-end;
+        /* Align to bottom for sheet-like feel or center? Center is safer for now, but let's stick to center as per existing */
         align-items: center;
     }
 
     .modal-content {
-        max-height: 90vh; /* Ensure it fits vertically */
-        overflow-y: auto; /* Scrollable if content is tall */
-        border-radius: 12px; /* Slight radius */
+        max-height: 90vh;
+        /* Ensure it fits vertically */
+        overflow-y: auto;
+        /* Scrollable if content is tall */
+        border-radius: 12px;
+        /* Slight radius */
     }
 
     .modal-left {
-        height: 200px; /* Smaller image area */
+        height: 200px;
+        /* Smaller image area */
     }
 
     .modal-right {
@@ -370,9 +375,10 @@
     }
 
     .checkbox-wrapper {
-        display: none; /* If there was any... but there isn't. Just being safe or consistent? No, remove. */
+        display: none;
+        /* If there was any... but there isn't. Just being safe or consistent? No, remove. */
     }
-    
+
     .fullscreen-close {
         top: 1rem;
         right: 1rem;
@@ -449,6 +455,26 @@
     max-width: 95vw;
     max-height: 90vh;
     object-fit: contain;
-    box-shadow: 0 0 50px rgba(0,0,0,0.8);
-    border: 1px solid rgba(255,255,255,0.1);
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Disabled modal links */
+.modal-link-btn.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background: rgba(255, 255, 255, 0.1);
+    color: #888;
+    border-color: rgba(255, 255, 255, 0.1);
+    pointer-events: auto;
+    /* Ensures hover works for title attribute */
+}
+
+.modal-link-btn.disabled:hover {
+    transform: none;
+    box-shadow: none;
+}
+
+.modal-link-btn.outline.disabled {
+    background: transparent;
 }

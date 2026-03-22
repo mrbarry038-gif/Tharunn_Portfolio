@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaLinkedin, FaInstagram, FaDiscord } from 'react-icons/fa';
+import { FaLinkedin, FaInstagram, FaDiscord, FaGithub } from 'react-icons/fa';
 import { FaXTwitter } from 'react-icons/fa6';
 import './Contact.css';
 
@@ -128,6 +128,10 @@ const Contact = () => {
                         <div className="detail-block">
                             <span className="mono-tag">SOCIALS</span>
                             <div className="social-row">
+                                <a href="https://github.com/Tharunn75" aria-label="GitHub" className="social-link" target="_blank" rel="noopener noreferrer">
+                                    <FaGithub />
+                                    <span className="tooltip">GitHub</span>
+                                </a>
                                 <a href="https://x.com/NTharunn" aria-label="X" className="social-link" target="_blank" rel="noopener noreferrer">
                                     <FaXTwitter />
                                     <span className="tooltip">X</span>

@@ -4,7 +4,7 @@ import { FaArrowRight, FaGithub, FaExternalLinkAlt, FaTimes, FaExpand } from 're
 import './Projects.css';
 
 const projects = [
-    /* {
+    {
         id: "01",
         title: "Wraffle Ecommerce",
         category: "Full Stack / React / Node",
@@ -15,7 +15,7 @@ const projects = [
         githubLink: "#",
         status: "Ongoing"
     },
-    {
+    /*{
         id: "02",
         title: "Jai Granites",
         category: "Web Design / Automation",
@@ -57,6 +57,17 @@ const projects = [
         image: "/assets/hero-bg.jpg",
         liveLink: "#",
         githubLink: "#",
+        status: "Completed"
+    },
+    {
+        id: "06",
+        title: "Flipzone",
+        category: "E-commerce Web Application",
+        description: "Full-stack e-commerce application with Admin and Customer modules.",
+        details: "Developed a full-stack e-commerce application with two modules – Admin and Customer. Implemented product management (add/edit/delete) for admin, and user registration with email verification for customers. Enabled product browsing with search, filter, and pagination. Integrated Cloudinary for image storage and Razorpay for secure online payments. Features include cart management and real-time user experience.",
+        image: "/assets/hero-bg.jpg",
+        liveLink: "#",
+        githubLink: "https://github.com/Tharunn75/Flipzone-A5",
         status: "Completed"
     }
 
@@ -156,12 +167,24 @@ const Projects = () => {
                                     <p className="modal-desc">{selectedProject.details || selectedProject.description}</p>
 
                                     <div className="modal-links">
-                                        <a href={selectedProject.liveLink} target="_blank" rel="noreferrer" className="modal-link-btn">
-                                            LIVE DEMO <FaExternalLinkAlt />
-                                        </a>
-                                        <a href={selectedProject.githubLink} target="_blank" rel="noreferrer" className="modal-link-btn outline">
-                                            GITHUB <FaGithub />
-                                        </a>
+                                        {selectedProject.liveLink && selectedProject.liveLink !== "#" ? (
+                                            <a href={selectedProject.liveLink} target="_blank" rel="noreferrer" className="modal-link-btn">
+                                                LIVE DEMO <FaExternalLinkAlt />
+                                            </a>
+                                        ) : (
+                                            <button className="modal-link-btn disabled" title="Live demo is not available .">
+                                                LIVE DEMO <FaExternalLinkAlt />
+                                            </button>
+                                        )}
+                                        {selectedProject.githubLink && selectedProject.githubLink !== "#" ? (
+                                            <a href={selectedProject.githubLink} target="_blank" rel="noreferrer" className="modal-link-btn outline">
+                                                GITHUB <FaGithub />
+                                            </a>
+                                        ) : (
+                                            <button className="modal-link-btn outline disabled" title="This repository is private .">
+                                                GITHUB <FaGithub />
+                                            </button>
+                                        )}
                                     </div>
                                 </div>
                             </div>
