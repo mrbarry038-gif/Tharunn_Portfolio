@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { FaArrowRight, FaGithub, FaExternalLinkAlt, FaTimes, FaExpand } from 'react-icons/fa';
 import './Projects.css';
 
@@ -82,6 +84,35 @@ const Projects = () => {
         ? projects
         : projects.filter(project => project.status === filter);
 
+    const listRef = useRef(null);
+
+    useEffect(() => {
+        if (!listRef.current) return;
+        
+        const ctx = gsap.context(() => {
+            const rows = gsap.utils.toArray('.project-row');
+            
+            gsap.set(rows, { opacity: 0, y: 50 });
+
+            ScrollTrigger.batch(rows, {
+                start: "top 85%",
+                onEnter: batch => gsap.to(batch, {
+                    opacity: 1, 
+                    y: 0, 
+                    duration: 0.8, 
+                    stagger: 0.15,
+                    ease: "power3.out",
+                    overwrite: true
+                })
+            });
+            
+            // Refresh ScrollTrigger after DOM update
+            ScrollTrigger.refresh();
+        }, listRef);
+
+        return () => ctx.revert();
+    }, [filteredProjects]);
+
     return (
         <section id="work" className="projects-section">
             <div className="container">
@@ -102,15 +133,11 @@ const Projects = () => {
                     </div>
                 </div>
 
-                <div className="project-list">
+                <div className="project-list" ref={listRef}>
                     {filteredProjects.map((project, index) => (
-                        <motion.div
-                            key={index}
+                        <div
+                            key={project.id}
                             className="project-row"
-                            initial={{ opacity: 0, y: 50 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true, margin: "-50px" }}
-                            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: index * 0.1 }}
                         >
                             <div className="project-index">({project.id})</div>
                             <div className="project-info">
@@ -132,7 +159,7 @@ const Projects = () => {
                                     <FaArrowRight />
                                 </button>
                             </div>
-                        </motion.div>
+                        </div>
                     ))}
                 </div>
             </div>

@@ -1,10 +1,21 @@
 .skills-section {
     padding: 10vh 0;
-    background: var(--bg-color);
+    background: transparent;
+}
+
+.skills-container-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 4rem;
+    align-items: start;
+}
+
+.skills-header-col {
+    position: sticky;
+    top: 20vh;
 }
 
 .skills-header {
-    margin-bottom: 4rem;
     border-bottom: 2px solid var(--text-main);
     padding-bottom: 1rem;
 }

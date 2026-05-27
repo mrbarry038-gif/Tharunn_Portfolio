@@ -99,8 +99,7 @@
     flex-direction: column;
     gap: 4rem;
     justify-content: flex-start;
-    /* Changed from flex-end */
-    padding-top: 2rem;
+    padding-top: 0;
 }
 
 .detail-block {
@@ -116,8 +115,8 @@
 
 .social-row {
     display: flex;
-    gap: 1.5rem;
-    font-size: 2rem;
+    gap: 2.5rem;
+    font-size: 3rem;
 }
 
 .social-link {

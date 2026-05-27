@@ -22,11 +22,10 @@
 
 /* Logo & Toggle */
 .logo {
-    font-family: var(--font-display);
+    font-family: var(--font-heading);
     font-weight: 800;
     font-size: 1.5rem;
-    color: #fff;
-    /* Default White on Black */
+    color: var(--text-main);
     position: relative;
     z-index: 1001;
     transition: color 0.3s ease;
@@ -35,8 +34,7 @@
 .menu-toggle {
     background: none;
     border: none;
-    color: #fff;
-    /* Default White on Black */
+    color: var(--text-main);
     font-family: var(--font-mono);
     font-size: 0.9rem;
     cursor: pointer;
@@ -49,8 +47,7 @@
 /* Sidebar Context - When Menu is Open */
 .header.menu-open .logo,
 .header.menu-open .menu-toggle {
-    color: var(--bg-color);
-    /* Black text on Blue Menu */
+    color: var(--text-main);
 }
 
 .menu-overlay {
@@ -59,7 +56,9 @@
     left: 0;
     width: 100vw;
     height: 100dvh;
-    background-color: var(--accent-primary);
+    background-color: rgba(18, 20, 29, 0.75);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -78,32 +77,30 @@
 }
 
 .menu-link {
-    color: var(--bg-color);
-    /* Black text on Blue bg */
-    font-family: var(--font-main);
+    color: var(--text-main);
+    font-family: var(--font-heading);
     font-size: clamp(3rem, 6vw, 5rem);
-    /* Smaller, responsive size */
     font-weight: 700;
     line-height: 1.1;
     text-transform: uppercase;
-    transition: transform 0.3s ease, opacity 0.3s ease, color 0.3s ease;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s ease, color 0.3s ease, -webkit-text-stroke 0.3s ease;
     position: relative;
-    /* For Dot positioning */
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    -webkit-text-stroke: 1px transparent;
 }
 
 .menu-link.dimmed {
-    opacity: 0.3;
-    /* Dim non-hovered items */
-    filter: blur(1px);
-    /* Optional: Slight blur for depth */
+    opacity: 0.2;
+    filter: blur(2px);
 }
 
 .menu-link:hover {
-    transform: scale(1.05);
+    transform: scale(1.05) translateX(20px);
     opacity: 1;
+    color: transparent;
+    -webkit-text-stroke: 1px var(--accent-primary);
 }
 
 .menu-dot {

@@ -1,16 +1,55 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useRef, useEffect } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { FaLinkedin, FaInstagram, FaDiscord, FaGithub } from 'react-icons/fa';
 import { FaXTwitter } from 'react-icons/fa6';
 import './Contact.css';
 
 const Contact = () => {
+    const sectionRef = useRef(null);
+    const formRef = useRef(null);
+    const detailsRef = useRef(null);
+
     const [formData, setFormData] = React.useState({
         name: '',
         email: '',
         message: ''
     });
     const [status, setStatus] = React.useState(''); // '', 'sending', 'success', 'error'
+
+    useEffect(() => {
+        const ctx = gsap.context(() => {
+            gsap.fromTo(formRef.current.children,
+                { y: 50, opacity: 0 },
+                {
+                    y: 0, opacity: 1,
+                    duration: 0.8,
+                    stagger: 0.15,
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: sectionRef.current,
+                        start: "top 75%"
+                    }
+                }
+            );
+
+            gsap.fromTo(detailsRef.current.children,
+                { x: 50, opacity: 0 },
+                {
+                    x: 0, opacity: 1,
+                    duration: 0.8,
+                    stagger: 0.2,
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: sectionRef.current,
+                        start: "top 75%"
+                    }
+                }
+            );
+        }, sectionRef);
+
+        return () => ctx.revert();
+    }, []);
 
     const handleChange = (e) => {
         setFormData(prev => ({
@@ -70,7 +109,7 @@ const Contact = () => {
     };
 
     return (
-        <section id="contact" className="contact-section">
+        <section id="contact" className="contact-section" ref={sectionRef}>
             <div className="container">
                 <div className="section-header">
                     <h2 className="section-title">Let's Connect</h2>
@@ -78,7 +117,7 @@ const Contact = () => {
                 </div>
 
                 <div className="contact-layout">
-                    <form className="kinetic-form" onSubmit={handleSubmit}>
+                    <form className="kinetic-form" onSubmit={handleSubmit} ref={formRef}>
                         <div className="input-group">
                             <label>01 / NAME</label>
                             <input
@@ -120,7 +159,7 @@ const Contact = () => {
                         {status === 'error' && <p style={{ color: '#ef4444', marginTop: '1rem' }}>Failed to send message. Please try again.</p>}
                     </form>
 
-                    <div className="contact-details">
+                    <div className="contact-details" ref={detailsRef}>
                         <div className="detail-block">
                             <span className="mono-tag">EMAIL</span>
                             <a href="mailto:tharunnn75@gmail.com" className="detail-link">tharunn@mail.com</a>

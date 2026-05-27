@@ -1,5 +1,6 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useRef, useEffect } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './Skills.css';
 
 const stack = [
@@ -11,26 +12,46 @@ const stack = [
 ];
 
 const Skills = () => {
+    const sectionRef = useRef(null);
+    const listRef = useRef(null);
+
+    useEffect(() => {
+        const ctx = gsap.context(() => {
+            const rows = listRef.current.children;
+            
+            gsap.fromTo(rows, 
+                { x: -50, opacity: 0 },
+                {
+                    x: 0, opacity: 1,
+                    duration: 0.8,
+                    stagger: 0.15,
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: listRef.current,
+                        start: "top 70%",
+                    }
+                }
+            );
+        }, sectionRef);
+
+        return () => ctx.revert();
+    }, []);
+
     return (
-        <section id="skills" className="skills-section">
-            <div className="container">
-                <div className="skills-header">
-                    <span className="mono-tag">02 / STACK</span>
+        <section id="skills" className="skills-section" ref={sectionRef}>
+            <div className="container skills-container-grid">
+                <div className="skills-header-col">
+                    <div className="skills-header">
+                        <span className="mono-tag">02 / STACK</span>
+                    </div>
                 </div>
 
-                <div className="stack-list">
+                <div className="stack-list" ref={listRef}>
                     {stack.map((item, index) => (
-                        <motion.div
-                            key={index}
-                            className="stack-row"
-                            initial={{ x: -20, opacity: 0 }}
-                            whileInView={{ x: 0, opacity: 1 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: index * 0.1 }}
-                        >
+                        <div key={index} className="stack-row">
                             <div className="stack-cat">{item.cat}</div>
                             <div className="stack-tech">{item.tech}</div>
-                        </motion.div>
+                        </div>
                     ))}
                 </div>
             </div>

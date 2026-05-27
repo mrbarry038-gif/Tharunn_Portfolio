@@ -1,0 +1,50 @@
+.preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--bg-color, #0a0a0a);
+    z-index: 10000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-main, #ffffff);
+    font-family: var(--font-mono, monospace);
+}
+
+.preloader-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.loading-logo {
+    font-family: var(--font-main, sans-serif);
+    font-size: 4rem;
+    font-weight: 800;
+    letter-spacing: -2px;
+    margin-bottom: 2rem;
+    color: var(--text-main);
+}
+
+.loading-text {
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+    color: var(--accent-primary, #00ff41);
+    margin-bottom: 1rem;
+    animation: pulse 1.5s infinite;
+}
+
+.loading-percentage {
+    font-size: 6rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+@keyframes pulse {
+    0% { opacity: 0.5; }
+    50% { opacity: 1; }
+    100% { opacity: 0.5; }
+}
