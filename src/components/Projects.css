@@ -170,8 +170,9 @@
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(0, 0, 0, 0.85);
-    backdrop-filter: blur(10px);
+    background: rgba(18, 20, 29, 0.75);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
     z-index: 2000;
     display: flex;
     justify-content: center;
@@ -180,7 +181,7 @@
 }
 
 .modal-content {
-    background: #0a0a0a;
+    background: var(--bg-color);
     width: 100%;
     max-width: 1000px;
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -214,7 +215,7 @@
 }
 
 .modal-left {
-    background: #111;
+    background: rgba(255, 255, 255, 0.02);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -280,8 +281,8 @@
     align-items: center;
     gap: 0.8rem;
     padding: 1rem 2rem;
-    background: #fff;
-    color: #000;
+    background: var(--text-main);
+    color: var(--bg-color);
     font-family: var(--font-mono);
     font-weight: 700;
     font-size: 0.9rem;
@@ -297,7 +298,7 @@
 .modal-link-btn.outline {
     background: transparent;
     border: 1px solid rgba(255, 255, 255, 0.2);
-    color: #fff;
+    color: var(--text-main);
 }
 
 .modal-link-btn.outline:hover {
@@ -477,4 +478,43 @@
 
 .modal-link-btn.outline.disabled {
     background: transparent;
+}
+
+/* Additional Responsive Adjustments */
+@media (max-width: 768px) {
+    .projects-section {
+        padding: 8vh 0;
+    }
+
+    .filter-buttons {
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    .project-row {
+        padding: 2.5rem 0;
+    }
+
+    .project-info h3 {
+        font-size: 2.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .kinetic-header.small {
+        font-size: clamp(2.5rem, 10vw, 4rem);
+    }
+
+    .project-info h3 {
+        font-size: 1.8rem;
+    }
+
+    .project-row {
+        padding: 2rem 0;
+    }
+    
+    .circle-btn {
+        width: 40px;
+        height: 40px;
+    }
 }

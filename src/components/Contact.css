@@ -188,6 +188,12 @@
         grid-template-columns: 1fr;
         gap: 4rem;
     }
+}
+
+@media (max-width: 768px) {
+    .contact-section {
+        padding: 8vh 0;
+    }
 
     .input-group input,
     .input-group textarea {
@@ -195,6 +201,39 @@
     }
 
     .section-title {
-        font-size: 4rem;
+        font-size: clamp(2.5rem, 10vw, 4rem);
+    }
+    
+    .social-row {
+        gap: 1.5rem;
+    }
+    
+    .submit-btn.big {
+        font-size: 1.5rem;
+        padding: 1.5rem 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .contact-section {
+        padding: 12vh 0;
+    }
+
+    .input-group input,
+    .input-group textarea {
+        font-size: 1.5rem;
+    }
+
+    .section-title {
+        font-size: 2.2rem;
+    }
+
+    .detail-link {
+        font-size: 1.2rem;
+    }
+
+    .social-row {
+        font-size: 2rem;
+        gap: 1rem;
     }
 }

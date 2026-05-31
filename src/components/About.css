@@ -119,9 +119,13 @@
 }
 
 @media (max-width: 768px) {
+    .about-section {
+        padding: 8vh 0;
+    }
+
     .about-grid {
         grid-template-columns: 1fr;
-        gap: 2rem;
+        gap: 1rem;
     }
 
     .about-content {
@@ -155,4 +159,20 @@
 
 .profile-frame:hover .profile-img {
     filter: grayscale(0%) contrast(1);
+}
+
+@media (max-width: 480px) {
+    .editorial-text {
+        font-size: clamp(1.8rem, 8vw, 2.5rem);
+        margin-bottom: 2rem;
+    }
+
+    .bio-details p {
+        font-size: 1.1rem;
+        line-height: 1.5;
+    }
+    
+    .profile-block {
+        justify-content: center;
+    }
 }

@@ -122,3 +122,24 @@ a {
 ::-webkit-scrollbar-thumb:hover {
   border: 2px solid rgba(0, 0, 0, 0);
 }
+
+/* Global Responsive Adjustments */
+@media (max-width: 768px) {
+  :root {
+    --spacing-container: 6vw; /* Slightly larger padding on mobile to avoid edge hugging */
+  }
+  
+  .kinetic-header {
+    font-size: clamp(3rem, 12vw, 8rem);
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --spacing-container: 8vw;
+  }
+
+  .kinetic-header {
+    font-size: clamp(2.5rem, 10vw, 6rem);
+  }
+}

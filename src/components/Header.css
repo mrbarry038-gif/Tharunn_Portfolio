@@ -116,3 +116,38 @@
     transform: translateY(-50%);
     pointer-events: none;
 }
+
+/* Header Responsive Adjustments */
+@media (max-width: 768px) {
+    .header {
+        padding: 1rem 0;
+    }
+
+    .logo {
+        font-size: 1.2rem;
+    }
+
+    .menu-toggle {
+        font-size: 0.8rem;
+    }
+
+    .menu-link {
+        font-size: clamp(2.5rem, 8vw, 4rem);
+    }
+}
+
+@media (max-width: 480px) {
+    .menu-nav {
+        gap: 1rem;
+    }
+
+    .menu-link {
+        font-size: 2.2rem;
+    }
+
+    .menu-dot {
+        width: 8px;
+        height: 8px;
+        right: -15px;
+    }
+}

@@ -53,9 +53,25 @@
 }
 
 @media (max-width: 768px) {
+    .skills-section {
+        padding: 8vh 0;
+    }
+
+    .skills-container-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .skills-header-col {
+        position: relative;
+        top: 0;
+        margin-bottom: 1rem;
+    }
+
     .stack-row {
         grid-template-columns: 1fr;
         gap: 0.5rem;
+        padding: 1.5rem 0;
     }
 
     .stack-tech {

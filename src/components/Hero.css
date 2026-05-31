@@ -72,12 +72,45 @@
 }
 
 @media (max-width: 768px) {
-    .kinetic-header {
-        font-size: 18vw;
+    .fluid-height {
+        height: 100%;
+        justify-content: space-between;
+        padding-top: 6rem;
+        padding-bottom: 3rem;
+        gap: 0;
+    }
+
+    .kinetic-wrapper {
+        padding-left: 0;
+        align-items: center;
+        text-align: center;
+        flex-grow: 1;
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
+    .kinetic-wrapper .kinetic-header {
+        font-size: clamp(3.2rem, 15vw, 6rem);
     }
 
     .hero-footer {
         flex-direction: column;
-        gap: 2rem;
+        gap: 1.5rem;
+        align-items: center;
+        text-align: center;
+        padding-top: 1.5rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .role-block,
+    .stack-block {
+        align-items: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .fluid-height {
+        padding-top: 5rem;
+        padding-bottom: 2rem;
     }
 }
