@@ -7,17 +7,18 @@ import './Projects.css';
 
 const projects = [
     {
-        id: "01",
-        title: "Wraffle Ecommerce",
-        category: "Full Stack / React / Node",
-        description: "A secure, dynamic ecommerce platform for modern retail.",
-        details: "Wraffle is a comprehensive ecommerce solution built with the MERN stack. It features real-time inventory tracking, secure payment gateways, and a dynamic dashboard for admins. The architecture ensures high scalability and performance.",
-        image: "/assets/project1.jpg",
+        id: "05",
+        title: "Agrisentrix",
+        category: "Web Design / Static",
+        description: "Business presentation portfolio with a NASA color-themed webpage.",
+        details: "A static business presentation portfolio website featuring a unique NASA color-themed design. Built to showcase corporate profiles and services with a dynamic visual approach.",
+        image: "/assets/Agrisentrix.jpg",
         liveLink: "#",
         githubLink: "#",
-        status: "Ongoing"
+        status: "Completed"
     },
-    /*{
+
+    {
         id: "02",
         title: "Jai Granites",
         category: "Web Design / Automation",
@@ -27,7 +28,7 @@ const projects = [
         liveLink: "#",
         githubLink: "#",
         status: "Ongoing"
-    }, */
+    },
     {
         id: "03",
         title: "Mobile Shop UI",
@@ -38,6 +39,17 @@ const projects = [
         liveLink: "#",
         githubLink: "#",
         status: "Completed"
+    },
+    {
+        id: "01",
+        title: "Wraffle Ecommerce",
+        category: "Full Stack / React / Node",
+        description: "A secure, dynamic ecommerce platform for modern retail.",
+        details: "Wraffle is a comprehensive ecommerce solution built with the MERN stack. It features real-time inventory tracking, secure payment gateways, and a dynamic dashboard for admins. The architecture ensures high scalability and performance.",
+        image: "/assets/uncon.jpg",
+        liveLink: "#",
+        githubLink: "#",
+        status: "Ongoing"
     },
     /* {
         id: "04",
@@ -50,18 +62,8 @@ const projects = [
         githubLink: "#",
         status: "Ongoing"
     }, */
-    {
-        id: "05",
-        title: "Agrisentrix",
-        category: "Web Design / Static",
-        description: "Business presentation portfolio with a NASA color-themed webpage.",
-        details: "A static business presentation portfolio website featuring a unique NASA color-themed design. Built to showcase corporate profiles and services with a dynamic visual approach.",
-        image: "/assets/hero-bg.jpg",
-        liveLink: "#",
-        githubLink: "#",
-        status: "Completed"
-    },
-    {
+
+    /* {
         id: "06",
         title: "Flipzone",
         category: "E-commerce Web Application",
@@ -71,7 +73,7 @@ const projects = [
         liveLink: "#",
         githubLink: "https://github.com/Tharunn75/Flipzone-A5",
         status: "Completed"
-    }
+    } */
 
 ];
 
@@ -88,24 +90,24 @@ const Projects = () => {
 
     useEffect(() => {
         if (!listRef.current) return;
-        
+
         const ctx = gsap.context(() => {
-            const rows = gsap.utils.toArray('.project-row');
-            
+            const rows = gsap.utils.toArray('.project-card');
+
             gsap.set(rows, { opacity: 0, y: 50 });
 
             ScrollTrigger.batch(rows, {
                 start: "top 85%",
                 onEnter: batch => gsap.to(batch, {
-                    opacity: 1, 
-                    y: 0, 
-                    duration: 0.8, 
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8,
                     stagger: 0.15,
                     ease: "power3.out",
                     overwrite: true
                 })
             });
-            
+
             // Refresh ScrollTrigger after DOM update
             ScrollTrigger.refresh();
         }, listRef);
@@ -114,11 +116,11 @@ const Projects = () => {
     }, [filteredProjects]);
 
     return (
-        <section id="work" className="projects-section">
+        <section id="projects" className="projects-section">
             <div className="container">
                 <div className="section-header">
-                    <h2 className="kinetic-header outline small">SELECTED</h2>
-                    <h2 className="kinetic-header solid small">WORKS</h2>
+                    <h2 className="section-title">Featured Projects</h2>
+                    <div className="title-line"></div>
 
                     <div className="filter-buttons">
                         {['All', 'Ongoing', 'Completed'].map((status) => (
@@ -137,27 +139,26 @@ const Projects = () => {
                     {filteredProjects.map((project, index) => (
                         <div
                             key={project.id}
-                            className="project-row"
+                            className={`project-card glass-panel`}
+                            onClick={() => setSelectedProject(project)}
                         >
-                            <div className="project-index">({project.id})</div>
-                            <div className="project-info">
-                                <h3>
-                                    {project.title}
-                                    <span className={`status-dot ${project.status.toLowerCase()}`}></span>
-                                </h3>
+                            <div className="project-image-preview">
+                                <img src={project.image} alt={project.title} />
+                                <div className="project-overlay-glow"></div>
+                            </div>
+                            <div className="project-card-content">
+                                <div className="project-card-header">
+                                    <h3>{project.title}</h3>
+                                    <div className="project-action">
+                                        <button className="circle-btn" aria-label="View Project Details">
+                                            <FaArrowRight />
+                                        </button>
+                                    </div>
+                                </div>
                                 <span className="project-cat">{project.category}</span>
-                            </div>
-                            <div className="project-desc">
-                                <p>{project.description}</p>
-                            </div>
-                            <div className="project-action">
-                                <button
-                                    className="circle-btn"
-                                    onClick={() => setSelectedProject(project)}
-                                    aria-label="View Project Details"
-                                >
-                                    <FaArrowRight />
-                                </button>
+                                <div className="project-desc">
+                                    <p>{project.description}</p>
+                                </div>
                             </div>
                         </div>
                     ))}
@@ -168,11 +169,11 @@ const Projects = () => {
                 {selectedProject && (
                     <div className="modal-overlay" onClick={() => setSelectedProject(null)}>
                         <motion.div
-                            className="modal-content"
-                            initial={{ opacity: 0, scale: 0.9 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            exit={{ opacity: 0, scale: 0.9 }}
-                            onClick={(e) => e.stopPropagation()} // Prevent close on content click
+                            className="modal-content glass-panel"
+                            initial={{ opacity: 0, y: 50 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: 50 }}
+                            onClick={(e) => e.stopPropagation()}
                         >
                             <button className="modal-close" onClick={() => setSelectedProject(null)}>
                                 <FaTimes />
@@ -195,23 +196,15 @@ const Projects = () => {
 
                                     <div className="modal-links">
                                         {selectedProject.liveLink && selectedProject.liveLink !== "#" ? (
-                                            <a href={selectedProject.liveLink} target="_blank" rel="noreferrer" className="modal-link-btn">
-                                                LIVE DEMO <FaExternalLinkAlt />
+                                            <a href={selectedProject.liveLink} target="_blank" rel="noreferrer" className="btn-primary">
+                                                Live Demo <FaExternalLinkAlt />
                                             </a>
-                                        ) : (
-                                            <button className="modal-link-btn disabled" title="Live demo is not available .">
-                                                LIVE DEMO <FaExternalLinkAlt />
-                                            </button>
-                                        )}
+                                        ) : null}
                                         {selectedProject.githubLink && selectedProject.githubLink !== "#" ? (
-                                            <a href={selectedProject.githubLink} target="_blank" rel="noreferrer" className="modal-link-btn outline">
-                                                GITHUB <FaGithub />
+                                            <a href={selectedProject.githubLink} target="_blank" rel="noreferrer" className="btn-secondary">
+                                                GitHub <FaGithub />
                                             </a>
-                                        ) : (
-                                            <button className="modal-link-btn outline disabled" title="This repository is private .">
-                                                GITHUB <FaGithub />
-                                            </button>
-                                        )}
+                                        ) : null}
                                     </div>
                                 </div>
                             </div>

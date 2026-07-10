@@ -1,57 +1,36 @@
-import React, { useRef, useEffect } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import React from 'react';
+import { motion } from 'framer-motion';
 import './Skills.css';
 
 const stack = [
-    { cat: "CORE", tech: "HTML5 / CSS3 / JAVASCRIPT (ES6+)" },
-    { cat: "FRONTEND", tech: "REACT.JS / VITE" },
-    { cat: "BACKEND", tech: "JAVA" },
-    { cat: "DATABASE", tech: "SQL" },
-    { cat: "TOOLS", tech: "GIT / DISCORD API / WEBPACK" }
+    { cat: "FRONTEND", tech: ["HTML", "CSS", "JavaScript", "React JS"] },
+    { cat: "BACKEND & DATABASE", tech: ["Java", "SQL"] },
+    { cat: "TOOLS", tech: ["Eclipse", "VS Code", "Antigravity", "Blender"] }
 ];
 
 const Skills = () => {
-    const sectionRef = useRef(null);
-    const listRef = useRef(null);
-
-    useEffect(() => {
-        const ctx = gsap.context(() => {
-            const rows = listRef.current.children;
-            
-            gsap.fromTo(rows, 
-                { x: -50, opacity: 0 },
-                {
-                    x: 0, opacity: 1,
-                    duration: 0.8,
-                    stagger: 0.15,
-                    ease: "power3.out",
-                    scrollTrigger: {
-                        trigger: listRef.current,
-                        start: "top 70%",
-                    }
-                }
-            );
-        }, sectionRef);
-
-        return () => ctx.revert();
-    }, []);
-
     return (
-        <section id="skills" className="skills-section" ref={sectionRef}>
-            <div className="container skills-container-grid">
-                <div className="skills-header-col">
-                    <div className="skills-header">
-                        <span className="mono-tag">02 / STACK</span>
-                    </div>
-                </div>
+        <section id="skills" className="skills-section">
+            <div className="container">
+                <h2 className="section-title">Skills</h2>
 
-                <div className="stack-list" ref={listRef}>
+                <div className="stack-grid">
                     {stack.map((item, index) => (
-                        <div key={index} className="stack-row">
-                            <div className="stack-cat">{item.cat}</div>
-                            <div className="stack-tech">{item.tech}</div>
-                        </div>
+                        <motion.div
+                            key={index}
+                            className="stack-card"
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: "-50px" }}
+                            transition={{ duration: 0.5, delay: index * 0.1 }}
+                        >
+                            <h3 className="stack-cat">{item.cat}</h3>
+                            <div className="stack-tech-pills">
+                                {item.tech.map((skill, i) => (
+                                    <span key={i} className="glass-pill">{skill}</span>
+                                ))}
+                            </div>
+                        </motion.div>
                     ))}
                 </div>
             </div>

@@ -3,42 +3,43 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import { Sphere, Float } from '@react-three/drei';
 import * as THREE from 'three';
 
-const WireframeGlobe = () => {
+const AuroraOrbs = () => {
     const groupRef = useRef();
-    const meshRef = useRef();
-    const secondaryMeshRef = useRef();
+    const meshRef1 = useRef();
+    const meshRef2 = useRef();
 
     useFrame((state, delta) => {
-        // Continuous spin (Earth rotates on its Y axis)
-        if (meshRef.current) {
-            meshRef.current.rotation.y += delta * 0.2;
+        // Soft floating rotation
+        if (meshRef1.current) {
+            meshRef1.current.rotation.x += delta * 0.1;
+            meshRef1.current.rotation.y += delta * 0.15;
         }
-        if (secondaryMeshRef.current) {
-            secondaryMeshRef.current.rotation.y -= delta * 0.1;
+        if (meshRef2.current) {
+            meshRef2.current.rotation.x -= delta * 0.12;
+            meshRef2.current.rotation.y -= delta * 0.08;
         }
 
-        // Interactive tilt based on mouse position
+        // Interactive subtle shift based on mouse position
         if (groupRef.current) {
-            // Map pointer (-1 to 1) to rotation (-pi/4 to pi/4)
-            const targetX = (state.pointer.y * Math.PI) / 4;
-            const targetY = (state.pointer.x * Math.PI) / 4;
+            const targetX = (state.pointer.y * Math.PI) / 8;
+            const targetY = (state.pointer.x * Math.PI) / 8;
             
-            groupRef.current.rotation.x = THREE.MathUtils.lerp(groupRef.current.rotation.x, targetX, delta * 2);
-            groupRef.current.rotation.y = THREE.MathUtils.lerp(groupRef.current.rotation.y, targetY, delta * 2);
+            groupRef.current.rotation.x = THREE.MathUtils.lerp(groupRef.current.rotation.x, targetX, delta);
+            groupRef.current.rotation.y = THREE.MathUtils.lerp(groupRef.current.rotation.y, targetY, delta);
         }
     });
 
     return (
         <group ref={groupRef}>
-            <Float speed={1.5} rotationIntensity={0.1} floatIntensity={0.5}>
-                {/* Primary Globe - Teal. Sized down and uses classic 36x18 Earth-like lat/long segments, with 23.5deg tilt (0.41 rad) */}
-                <Sphere ref={meshRef} args={[1.8, 36, 18]} position={[0, 0, 0]} rotation={[0.41, 0, 0]}>
-                    <meshBasicMaterial color="#4FD1C5" wireframe transparent opacity={0.25} />
+            <Float speed={2} rotationIntensity={0.5} floatIntensity={1}>
+                {/* Primary Orb - Violet */}
+                <Sphere ref={meshRef1} args={[2.5, 64, 64]} position={[-1, 1, -2]}>
+                    <meshBasicMaterial color="#8B5CF6" transparent opacity={0.15} wireframe={false} />
                 </Sphere>
                 
-                {/* Secondary Background Globe - Coral. Sized down to match nicely */}
-                <Sphere ref={secondaryMeshRef} args={[2.4, 24, 12]} position={[0, 0, -1]}>
-                    <meshBasicMaterial color="#FF8A65" wireframe transparent opacity={0.08} />
+                {/* Secondary Orb - Cyan */}
+                <Sphere ref={meshRef2} args={[3.5, 64, 64]} position={[2, -1, -4]}>
+                    <meshBasicMaterial color="#06B6D4" transparent opacity={0.1} wireframe={false} />
                 </Sphere>
             </Float>
         </group>
@@ -54,10 +55,11 @@ const BackgroundCanvas = () => {
             width: '100vw',
             height: '100vh',
             zIndex: -1,
-            pointerEvents: 'none'
+            pointerEvents: 'none',
+            filter: 'blur(40px)', // Creates the soft glowing aurora effect
         }}>
             <Canvas camera={{ position: [0, 0, 5], fov: 45 }}>
-                <WireframeGlobe />
+                <AuroraOrbs />
             </Canvas>
         </div>
     );

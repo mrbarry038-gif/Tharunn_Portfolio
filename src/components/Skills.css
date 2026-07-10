@@ -1,40 +1,29 @@
 .skills-section {
     padding: 10vh 0;
-    background: transparent;
+    position: relative;
+    z-index: 10;
 }
 
-.skills-container-grid {
+.stack-grid {
     display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 4rem;
-    align-items: start;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
 }
 
-.skills-header-col {
-    position: sticky;
-    top: 20vh;
-}
-
-.skills-header {
-    border-bottom: 2px solid var(--text-main);
-    padding-bottom: 1rem;
-}
-
-.stack-list {
+.stack-card {
     display: flex;
     flex-direction: column;
+    padding: 2.5rem;
+    gap: 1.5rem;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    transition: transform 0.3s ease, border-color 0.3s ease;
 }
 
-.stack-row {
-    display: grid;
-    grid-template-columns: 1fr 3fr;
-    padding: 2rem 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    transition: background 0.3s ease;
-}
-
-.stack-row:hover {
-    background: rgba(255, 255, 255, 0.05);
+.stack-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(255, 255, 255, 0.1);
 }
 
 .stack-cat {
@@ -42,39 +31,39 @@
     color: var(--accent-primary);
     font-weight: 700;
     letter-spacing: 1px;
+    font-size: 1.1rem;
 }
 
-.stack-tech {
+.stack-tech-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.glass-pill {
+    padding: 0.8rem 1.5rem;
+    background: transparent;
+    border: 1px solid var(--glass-border);
+    border-radius: 50px;
     font-family: var(--font-main);
-    font-size: 1.5rem;
-    font-weight: 500;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    transition: all 0.3s ease;
+}
+
+.glass-pill:hover {
+    border-color: var(--accent-primary);
     color: var(--text-main);
-    text-transform: uppercase;
+}
+
+@media (max-width: 1024px) {
+    .stack-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 @media (max-width: 768px) {
-    .skills-section {
-        padding: 8vh 0;
-    }
-
-    .skills-container-grid {
+    .stack-grid {
         grid-template-columns: 1fr;
-        gap: 2rem;
-    }
-
-    .skills-header-col {
-        position: relative;
-        top: 0;
-        margin-bottom: 1rem;
-    }
-
-    .stack-row {
-        grid-template-columns: 1fr;
-        gap: 0.5rem;
-        padding: 1.5rem 0;
-    }
-
-    .stack-tech {
-        font-size: 1.1rem;
     }
 }
