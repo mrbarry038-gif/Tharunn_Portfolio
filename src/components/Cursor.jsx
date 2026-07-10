@@ -4,15 +4,26 @@ import './Cursor.css';
 
 const Cursor = () => {
     const [isHovered, setIsHovered] = useState(false);
+    const [isTouchDevice, setIsTouchDevice] = useState(false);
+
+    useEffect(() => {
+        // Detect touch devices to disable cursor physics entirely
+        if (window.matchMedia("(hover: none) and (pointer: coarse)").matches) {
+            setIsTouchDevice(true);
+        }
+    }, []);
 
     const cursorX = useMotionValue(-100);
     const cursorY = useMotionValue(-100);
 
-    const springConfig = { damping: 25, stiffness: 120 };
+    // Single sleek spring configuration for the aura
+    const springConfig = { damping: 25, stiffness: 150, mass: 0.5 };
     const cursorXSpring = useSpring(cursorX, springConfig);
     const cursorYSpring = useSpring(cursorY, springConfig);
 
     useEffect(() => {
+        if (isTouchDevice) return;
+
         const moveCursor = (e) => {
             cursorX.set(e.clientX);
             cursorY.set(e.clientY);
@@ -21,11 +32,10 @@ const Cursor = () => {
         const handleMouseDown = () => setIsHovered(true);
         const handleMouseUp = () => setIsHovered(false);
 
-        // Add hover effect listeners for interactive elements
         const handleLinkHover = () => setIsHovered(true);
         const handleLinkLeave = () => setIsHovered(false);
 
-        const links = document.querySelectorAll('a, button, .project-row, input, textarea');
+        const links = document.querySelectorAll('a, button, .project-row, .project-card, input, textarea');
         links.forEach(link => {
             link.addEventListener('mouseenter', handleLinkHover);
             link.addEventListener('mouseleave', handleLinkLeave);
@@ -44,15 +54,16 @@ const Cursor = () => {
                 link.removeEventListener('mouseleave', handleLinkLeave);
             });
         };
-    }, []);
+    }, [isTouchDevice, cursorX, cursorY]);
 
-    // Re-attach listeners on DOM mutations (simple approach for dynamic content like modals)
     useEffect(() => {
+        if (isTouchDevice) return;
+
         const handleLinkHover = () => setIsHovered(true);
         const handleLinkLeave = () => setIsHovered(false);
 
         const observer = new MutationObserver((mutations) => {
-            const links = document.querySelectorAll('a, button, .project-row, .modal-close');
+            const links = document.querySelectorAll('a, button, .project-row, .project-card, .modal-close, .modal-img-wrapper, .fullscreen-close');
             links.forEach(link => {
                 link.addEventListener('mouseenter', handleLinkHover);
                 link.addEventListener('mouseleave', handleLinkLeave);
@@ -62,29 +73,20 @@ const Cursor = () => {
         observer.observe(document.body, { childList: true, subtree: true });
 
         return () => observer.disconnect();
-    }, []);
+    }, [isTouchDevice]);
+
+    if (isTouchDevice) return null;
 
     return (
-        <>
-            <motion.div
-                className={`cursor-dot ${isHovered ? 'hover' : ''}`}
-                style={{
-                    translateX: cursorX,
-                    translateY: cursorY,
-                    x: "-50%",
-                    y: "-50%"
-                }}
-            />
-            <motion.div
-                className={`cursor-follower ${isHovered ? 'hover' : ''}`}
-                style={{
-                    translateX: cursorXSpring,
-                    translateY: cursorYSpring,
-                    x: "-50%",
-                    y: "-50%"
-                }}
-            />
-        </>
+        <motion.div
+            className={`cursor-aura ${isHovered ? 'hover' : ''}`}
+            style={{
+                translateX: cursorXSpring,
+                translateY: cursorYSpring,
+                x: "-50%",
+                y: "-50%"
+            }}
+        />
     );
 };
 

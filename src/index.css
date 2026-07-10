@@ -213,6 +213,11 @@ section {
   :root {
     --spacing-container: 5vw;
   }
+  
+  /* Critical Performance Fix: Remove heavy SVG noise on mobile */
+  body {
+    background-image: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.05) 0%, transparent 60%);
+  }
 }
 
 /* Mobile Small */

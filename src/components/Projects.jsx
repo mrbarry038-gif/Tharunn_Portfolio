@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -165,78 +166,84 @@ const Projects = () => {
                 </div>
             </div>
 
-            <AnimatePresence>
-                {selectedProject && (
-                    <div className="modal-overlay" onClick={() => setSelectedProject(null)}>
-                        <motion.div
-                            className="modal-content glass-panel"
-                            initial={{ opacity: 0, y: 50 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: 50 }}
-                            onClick={(e) => e.stopPropagation()}
-                        >
-                            <button className="modal-close" onClick={() => setSelectedProject(null)}>
-                                <FaTimes />
-                            </button>
+            {createPortal(
+                <AnimatePresence>
+                    {selectedProject && (
+                        <div className="modal-overlay" onClick={() => setSelectedProject(null)}>
+                            <motion.div
+                                className="modal-content glass-panel"
+                                initial={{ opacity: 0, y: 50 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: 50 }}
+                                onClick={(e) => e.stopPropagation()}
+                            >
+                                <button className="modal-close" onClick={() => setSelectedProject(null)}>
+                                    <FaTimes />
+                                </button>
 
-                            <div className="modal-grid">
-                                <div className="modal-left">
-                                    <div className="modal-img-wrapper" onClick={() => setIsFullScreen(true)}>
-                                        <img src={selectedProject.image} alt={selectedProject.title} />
-                                        <div className="img-overlay-icon">
-                                            <FaExpand />
+                                <div className="modal-grid">
+                                    <div className="modal-left">
+                                        <div className="modal-img-wrapper" onClick={() => setIsFullScreen(true)}>
+                                            <img src={selectedProject.image} alt={selectedProject.title} />
+                                            <div className="img-overlay-icon">
+                                                <FaExpand />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="modal-right">
+                                        <h3 className="modal-title">{selectedProject.title}</h3>
+                                        <span className="modal-cat">{selectedProject.category}</span>
+
+                                        <p className="modal-desc">{selectedProject.details || selectedProject.description}</p>
+
+                                        <div className="modal-links">
+                                            {selectedProject.liveLink && selectedProject.liveLink !== "#" ? (
+                                                <a href={selectedProject.liveLink} target="_blank" rel="noreferrer" className="btn-primary">
+                                                    Live Demo <FaExternalLinkAlt />
+                                                </a>
+                                            ) : null}
+                                            {selectedProject.githubLink && selectedProject.githubLink !== "#" ? (
+                                                <a href={selectedProject.githubLink} target="_blank" rel="noreferrer" className="btn-secondary">
+                                                    GitHub <FaGithub />
+                                                </a>
+                                            ) : null}
                                         </div>
                                     </div>
                                 </div>
-                                <div className="modal-right">
-                                    <h3 className="modal-title">{selectedProject.title}</h3>
-                                    <span className="modal-cat">{selectedProject.category}</span>
+                            </motion.div>
+                        </div>
+                    )}
+                </AnimatePresence>,
+                document.body
+            )}
 
-                                    <p className="modal-desc">{selectedProject.details || selectedProject.description}</p>
-
-                                    <div className="modal-links">
-                                        {selectedProject.liveLink && selectedProject.liveLink !== "#" ? (
-                                            <a href={selectedProject.liveLink} target="_blank" rel="noreferrer" className="btn-primary">
-                                                Live Demo <FaExternalLinkAlt />
-                                            </a>
-                                        ) : null}
-                                        {selectedProject.githubLink && selectedProject.githubLink !== "#" ? (
-                                            <a href={selectedProject.githubLink} target="_blank" rel="noreferrer" className="btn-secondary">
-                                                GitHub <FaGithub />
-                                            </a>
-                                        ) : null}
-                                    </div>
-                                </div>
-                            </div>
+            {createPortal(
+                <AnimatePresence>
+                    {isFullScreen && selectedProject && (
+                        <motion.div
+                            className="fullscreen-overlay"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            onClick={() => setIsFullScreen(false)}
+                        >
+                            <button className="fullscreen-close" onClick={() => setIsFullScreen(false)}>
+                                <FaTimes />
+                            </button>
+                            <motion.img
+                                src={selectedProject.image}
+                                alt={selectedProject.title}
+                                className="fullscreen-image"
+                                initial={{ scale: 0.8 }}
+                                animate={{ scale: 1 }}
+                                exit={{ scale: 0.8 }}
+                                onClick={(e) => e.stopPropagation()}
+                            />
                         </motion.div>
-                    </div>
-                )}
-            </AnimatePresence>
-
-            <AnimatePresence>
-                {isFullScreen && selectedProject && (
-                    <motion.div
-                        className="fullscreen-overlay"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        onClick={() => setIsFullScreen(false)}
-                    >
-                        <button className="fullscreen-close" onClick={() => setIsFullScreen(false)}>
-                            <FaTimes />
-                        </button>
-                        <motion.img
-                            src={selectedProject.image}
-                            alt={selectedProject.title}
-                            className="fullscreen-image"
-                            initial={{ scale: 0.8 }}
-                            animate={{ scale: 1 }}
-                            exit={{ scale: 0.8 }}
-                            onClick={(e) => e.stopPropagation()}
-                        />
-                    </motion.div>
-                )}
-            </AnimatePresence>
+                    )}
+                </AnimatePresence>,
+                document.body
+            )}
         </section>
     );
 };

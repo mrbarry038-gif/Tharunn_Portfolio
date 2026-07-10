@@ -1,23 +1,4 @@
-.cursor-dot {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 6px;
-    height: 6px;
-    background-color: var(--accent-primary);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 10000;
-    mix-blend-mode: difference;
-    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease;
-}
-
-.cursor-dot.hover {
-    transform: scale(8);
-    background-color: #fff;
-}
-
-.cursor-follower {
+.cursor-aura {
     position: fixed;
     top: 0;
     left: 0;
@@ -27,21 +8,24 @@
     border-radius: 50%;
     pointer-events: none;
     z-index: 9999;
-    transition: width 0.3s ease, height 0.3s ease, opacity 0.3s ease;
     mix-blend-mode: difference;
+    background-color: transparent;
+    transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1), 
+                height 0.3s cubic-bezier(0.16, 1, 0.3, 1), 
+                background-color 0.3s ease, 
+                border-color 0.3s ease;
 }
 
-.cursor-follower.hover {
-    width: 0;
-    height: 0;
-    opacity: 0;
+.cursor-aura.hover {
+    width: 80px;
+    height: 80px;
+    background-color: #fff;
+    border-color: transparent;
 }
 
 /* Hide custom cursor on touch devices */
 @media (hover: none) and (pointer: coarse) {
-
-    .cursor-dot,
-    .cursor-follower {
+    .cursor-aura {
         display: none;
     }
 }

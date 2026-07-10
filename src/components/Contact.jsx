@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { FaLinkedin, FaInstagram, FaDiscord, FaGithub } from 'react-icons/fa';
+import { FaLinkedin, FaInstagram, FaDiscord, FaGithub, FaEnvelope } from 'react-icons/fa';
 import { FaXTwitter } from 'react-icons/fa6';
 import './Contact.css';
 
@@ -111,84 +111,72 @@ const Contact = () => {
     return (
         <section id="contact" className="contact-section" ref={sectionRef}>
             <div className="container">
-                <div className="section-header">
-                    <h2 className="section-title">Let's Connect</h2>
-                    <p className="section-subtitle">Have a project in mind? Let's build something extraordinary.</p>
-                </div>
+                <div className="contact-layout centered">
+                    <div className="section-header centered">
+                        <h2 className="section-title massive">LET'S<br/>CONNECT</h2>
+                        <p className="section-subtitle">Have a project in mind? Let's build something extraordinary.</p>
+                    </div>
 
-                <div className="contact-layout">
-                    <form className="kinetic-form" onSubmit={handleSubmit} ref={formRef}>
-                        <div className="input-group">
-                            <label>01 / NAME</label>
-                            <input
-                                type="text"
-                                name="name"
-                                value={formData.name}
-                                onChange={handleChange}
-                                placeholder="Enter your name"
-                                required
-                            />
-                        </div>
-                        <div className="input-group">
-                            <label>02 / EMAIL</label>
-                            <input
-                                type="email"
-                                name="email"
-                                value={formData.email}
-                                onChange={handleChange}
-                                placeholder="Enter your email"
-                                required
-                            />
-                        </div>
-                        <div className="input-group">
-                            <label>03 / MESSAGE</label>
-                            <textarea
-                                name="message"
-                                value={formData.message}
-                                onChange={handleChange}
-                                placeholder="Tell me about your project"
-                                rows="1"
-                                required
-                            ></textarea>
-                        </div>
-
-                        <button type="submit" className="submit-btn big" disabled={status === 'sending'}>
-                            {status === 'sending' ? 'SENDING...' : status === 'success' ? 'SENT!' : 'SEND MESSAGE'}
-                        </button>
-                        {status === 'success' && <p style={{ color: '#4ade80', marginTop: '1rem' }}>Message sent successfully!</p>}
-                        {status === 'error' && <p style={{ color: '#ef4444', marginTop: '1rem' }}>Failed to send message. Please try again.</p>}
-                    </form>
-
-                    <div className="contact-details" ref={detailsRef}>
-                        <div className="detail-block">
-                            <span className="mono-tag">EMAIL</span>
-                            <a href="mailto:tharunnn75@gmail.com" className="detail-link">tharunn@mail.com</a>
-                        </div>
-                        <div className="detail-block">
-                            <span className="mono-tag">SOCIALS</span>
-                            <div className="social-row">
-                                <a href="https://github.com/Tharunn75" aria-label="GitHub" className="social-link" target="_blank" rel="noopener noreferrer">
-                                    <FaGithub />
-                                    <span className="tooltip">GitHub</span>
-                                </a>
-                                <a href="https://x.com/NTharunn" aria-label="X" className="social-link" target="_blank" rel="noopener noreferrer">
-                                    <FaXTwitter />
-                                    <span className="tooltip">X</span>
-                                </a>
-                                <a href="https://www.linkedin.com/in/tharunn-n-3014a4237" aria-label="LinkedIn" className="social-link" target="_blank" rel="noopener noreferrer">
-                                    <FaLinkedin />
-                                    <span className="tooltip">LinkedIn</span>
-                                </a>
-                                <a href="https://www.instagram.com/tharunnn75_?igsh=MTZqdHU5YWtmenRoYw==" aria-label="Instagram" className="social-link" target="_blank" rel="noopener noreferrer">
-                                    <FaInstagram />
-                                    <span className="tooltip">Instagram</span>
-                                </a>
-                                <a href="https://discord.com/users/832993644755288095" aria-label="Discord" className="social-link" target="_blank" rel="noopener noreferrer">
-                                    <FaDiscord />
-                                    <span className="tooltip">Discord</span>
-                                </a>
+                    <div className="form-container">
+                        <form className="glass-form" onSubmit={handleSubmit} ref={formRef}>
+                            <div className="input-group glass">
+                                <input
+                                    type="text"
+                                    name="name"
+                                    value={formData.name}
+                                    onChange={handleChange}
+                                    placeholder="Your Name"
+                                    required
+                                />
                             </div>
-                        </div>
+                            <div className="input-group glass">
+                                <input
+                                    type="email"
+                                    name="email"
+                                    value={formData.email}
+                                    onChange={handleChange}
+                                    placeholder="Your Email"
+                                    required
+                                />
+                            </div>
+                            <div className="input-group glass">
+                                <textarea
+                                    name="message"
+                                    value={formData.message}
+                                    onChange={handleChange}
+                                    placeholder="Tell me about your project"
+                                    rows="4"
+                                    required
+                                ></textarea>
+                            </div>
+
+                            <button type="submit" className="submit-btn pill" disabled={status === 'sending'}>
+                                {status === 'sending' ? 'SENDING...' : status === 'success' ? 'SENT!' : 'SEND MESSAGE'}
+                            </button>
+                            {status === 'success' && <p className="status-msg success">Message sent successfully!</p>}
+                            {status === 'error' && <p className="status-msg error">Failed to send message. Please try again.</p>}
+                        </form>
+                    </div>
+
+                    <div className="social-icons-row" ref={detailsRef}>
+                        <a href="mailto:tharunnn75@gmail.com" className="social-icon-btn" aria-label="Email">
+                            <FaEnvelope />
+                        </a>
+                        <a href="https://github.com/Tharunn75" target="_blank" rel="noopener noreferrer" className="social-icon-btn" aria-label="GitHub">
+                            <FaGithub />
+                        </a>
+                        <a href="https://www.linkedin.com/in/tharunn-n-3014a4237" target="_blank" rel="noopener noreferrer" className="social-icon-btn" aria-label="LinkedIn">
+                            <FaLinkedin />
+                        </a>
+                        <a href="https://x.com/NTharunn" target="_blank" rel="noopener noreferrer" className="social-icon-btn" aria-label="X (Twitter)">
+                            <FaXTwitter />
+                        </a>
+                        <a href="https://www.instagram.com/tharunnn75_?igsh=MTZqdHU5YWtmenRoYw==" target="_blank" rel="noopener noreferrer" className="social-icon-btn" aria-label="Instagram">
+                            <FaInstagram />
+                        </a>
+                        <a href="https://discord.com/users/832993644755288095" target="_blank" rel="noopener noreferrer" className="social-icon-btn" aria-label="Discord">
+                            <FaDiscord />
+                        </a>
                     </div>
                 </div>
 
